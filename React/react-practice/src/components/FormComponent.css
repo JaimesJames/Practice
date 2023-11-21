@@ -1,0 +1,50 @@
+
+
+label{
+    display: inline-block;
+    margin: 10px 0;
+}
+
+input{
+    border: 1px solid #dedede;
+    border-radius: 25px;
+    display: block;
+    font-size: 16px;
+    padding: 10px 15px;
+    width: 100%;
+
+}
+
+.input:focus{
+    outline: none;
+}
+.btn-disable{
+    /* background-color: rgb(255, 75, 20);
+    color: white; */
+    cursor: pointer;
+    display: block;
+    margin: 10px 0 30px;
+    padding: 10px;
+    font-size: 16px;
+    width:100%;
+    border-radius: 25px;
+    border: 1px solid rgb(197, 197, 197);
+}
+
+.btn-active{
+    background-color: rgb(255, 75, 20);
+    color: white;
+    cursor: pointer;
+    display: block;
+    margin: 10px 0 30px;
+    padding: 10px;
+    font-size: 16px;
+    width:100%;
+    border-radius: 25px;
+    border: 1px solid transparent;
+}
+
+.btn-active:hover{
+    background-color: rgb(226, 65, 16);
+    color: rgb(216, 215, 215);
+}

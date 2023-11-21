@@ -1,0 +1,27 @@
+
+.item-list {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+.item-list li {
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  padding: 15px 30px;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  position: relative;
+  border-radius: 20px;
+  color: #727272;
+}
+
+.expense{
+  background:  rgb(255, 179, 179);
+}
+
+.income{
+  background:  rgb(183, 255, 187);
+}
