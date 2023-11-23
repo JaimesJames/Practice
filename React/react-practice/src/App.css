@@ -9,6 +9,7 @@
   font-family: 'Kanit', sans-serif;
   font-family: 'Noto Sans Thai', sans-serif;
   font-family: 'Prompt', sans-serif;
+  margin-bottom:1rem;
 }
 
 body{
@@ -24,4 +25,28 @@ body{
 .container{
   margin: 30px;
   width: 500px;
+}
+
+.horizontal-menu{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+
+}
+
+.horizontal-menu li{
+  display: inline-block;
+}
+
+.horizontal-menu a{
+  /* Link is auto to a tag */
+  text-decoration: none;
+  display: block;
+  padding: 0.5rem 1.5rem;
+  background-color: black;
+  border-radius: 50px;
+  margin: 0 .5rem;
+  color: white;
 }
