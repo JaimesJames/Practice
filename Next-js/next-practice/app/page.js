@@ -15,7 +15,7 @@ export default function Home() {
     <>
       <div className='content-space'>
         <h1 className={styles.title}>first page</h1>
-        <Image src='/IMG_0498.png' width={700} height={500} alt='logo' style={{marginTop:'1.5rem'}}/>
+        <Image src='/IMG_0498.PNG' width={700} height={500} alt='logo' style={{marginTop:'1.5rem'}}/>
         <p>Welcome to JaimesJames space!</p>
         <Link href='/product' className={styles.btn}>Next!</Link>
       </div>
