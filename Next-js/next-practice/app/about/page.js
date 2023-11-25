@@ -12,7 +12,7 @@ const About = () => {
     <>
       <div className='content-space about'>
         <h1 className={styles.title}>About us</h1>
-        <Image src="/IMG_0498.png" width={700} height={500} alt="logo"  style={{ marginTop: "1.5rem" }} />
+        <Image src="/IMG_0498.PNG" width={700} height={500} alt="logo"  style={{ marginTop: "1.5rem" }} />
       </div>
     </>
   );
