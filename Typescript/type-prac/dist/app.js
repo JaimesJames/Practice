@@ -80,3 +80,5 @@ const users = []; //not define default
 users.push('jaimes');
 const cus = [];
 cus.push(emp1);
+const total = (...numbers) => {
+};

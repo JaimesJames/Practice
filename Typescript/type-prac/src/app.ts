@@ -117,3 +117,8 @@ users.push('jaimes')
 const cus:Employee [] = []
 
 cus.push(emp1)
+
+
+const total =(...numbers:number[])=>{ //rest
+
+}
