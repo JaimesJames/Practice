@@ -23,6 +23,8 @@ function App() {
     { id: 3, title: "Food", amount: -50000 },
   ];
 
+  console.log(initstate)
+
   const [item, setItems] = useState(initstate);
 
   const [reportIncome, setReportIncome] = useState(0);
