@@ -18,7 +18,7 @@ const ThreeScene: React.FC = () => {
             const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
             const loader = new GLTFLoader();
 
-            loader.load('path/to/model.glb', function (gltf: any) {
+            loader.load('/model/Pumpkin.fbx', function (gltf: any) {
 
                 
                 
