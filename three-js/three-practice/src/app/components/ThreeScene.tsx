@@ -18,18 +18,20 @@ const ThreeScene = () => {
         renderer.setSize(window.innerWidth, window.innerHeight);
         containerRef.current?.appendChild(renderer.domElement);
 
-        // const geometry = new THREE.BoxGeometry(1, 1, 1);
-        // const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-        // const cube = new THREE.Mesh(geometry, material);
-        // scene.add(cube);
+        const geometry = new THREE.BoxGeometry(1, 1, 1);
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
 
         
 
         const loader = new GLTFLoader();
 
-        loader.load( '/model/untitled.gltf', function ( gltf ) {
+        loader.load( '/model/itcamp19.gltf', function ( gltf ) {
 
-            scene.add( gltf.scene );
+            gltf.scene.scale.set(2, 2, 2); 
+            const root = gltf.scene;
+            scene.add(root);
 
         }, undefined, function ( error ) {
 
@@ -59,7 +61,12 @@ const ThreeScene = () => {
         //         console.log(error)
         //     }
         // )
-
+        const renderScene = () => {
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            renderer.render(scene, camera);
+            requestAnimationFrame(renderScene);
+        };
         camera.position.z = 5;
         function animate() {
             requestAnimationFrame(animate);
