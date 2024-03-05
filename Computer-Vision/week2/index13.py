@@ -3,7 +3,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 RED = [0,0,255]
 RED_RGB = RED[::-1]
-img = cv2.imread('Opencv_Logo.png')
+img = cv2.imread('img/opencv_Logo.jpg')
 img1 = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 replicate = cv2.copyMakeBorder(img1,10,10,10,10,cv2.BORDER_REPLICATE)
 reflect = cv2.copyMakeBorder(img1,10,10,10,10,cv2.BORDER_REFLECT)
