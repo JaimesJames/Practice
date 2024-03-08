@@ -9,6 +9,56 @@ import time
 from sklearn.linear_model import LinearRegression
 from matplotlib import pyplot as plt
 
+def detect_green_ball(image):
+    # Convert BGR to HSV
+    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+
+    # Define the lower and upper boundaries for the green color (adjust as needed)
+    lower_green = np.array([40, 40, 40])
+    upper_green = np.array([80, 255, 255])
+
+    # Threshold the image to extract the green ball
+    mask_green = cv2.inRange(hsv, lower_green, upper_green)
+
+    # Find contours of the green ball
+    contours_green, _ = cv2.findContours(mask_green, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    # Draw contours on the original image for visualization
+    cv2.drawContours(image, contours_green, -1, (0, 255, 0), 1)
+
+    return contours_green
+
+def detect_shadows(image):
+    # Convert the image to grayscale
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+    # Threshold the image to extract shadows
+    _, mask_shadows = cv2.threshold(gray, 120, 255, cv2.THRESH_BINARY_INV)
+
+    # Find contours of shadows
+    contours_shadows, _ = cv2.findContours(mask_shadows, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    # Draw contours on the original image for visualization
+    cv2.drawContours(image, contours_shadows, -1, (0, 0, 255), 1)
+
+    return contours_shadows
+
+def check_intersection(contours_objects, contours_shadows):
+    # Check for intersections between object and shadow contours
+    for contour_object in contours_objects:
+        for contour_shadow in contours_shadows:
+            # Iterate over the points in the contour
+            for point in contour_shadow[:, 0]:
+                # Convert point to tuple of float values
+                pt = tuple(map(float, point))
+                # Check for intersection
+                intersection = cv2.pointPolygonTest(contour_object, pt, False)
+                if intersection >= 0:
+                    return True  
+    return False
+
+
+
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-v", "--video",
@@ -19,8 +69,8 @@ args = vars(ap.parse_args())
 
 # define the lower and upper boundaries of the "green"
 # ball in the HSV color space
-greenLower = (40, 40, 40)
-greenUpper = (80, 255, 255)
+greenLower = (29, 86, 6)
+greenUpper = (64, 255, 255)
 # initialize the list of tracked points, the frame counter,
 # and the coordinate deltas
 pts = deque(maxlen=args["buffer"])
@@ -36,7 +86,7 @@ ty = deque(maxlen=args["buffer"])
 #  was not supplied, grab the reference
 # to the webcam
 if not args.get("video", False):
-    vs = VideoStream(src=1).start()
+    vs = VideoStream(src=0).start()
 # otherwise, grab a reference to the video file
 else:
     vs = cv2.VideoCapture(args["video"])
@@ -57,7 +107,7 @@ while True:
         continue
     # resize the frame, blur it, and convert it to the HSV
     # color space
-    frame = imutils.resize(frame, width=1080)
+    frame = imutils.resize(frame, width=600)
     detect = np.zeros((720, 1080, 3), np.uint8)
     blurred = cv2.GaussianBlur(frame, (11, 11), 0)
     hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
@@ -155,36 +205,36 @@ while True:
         thickness = int(np.sqrt(args["buffer"] / float(i + 1)) * 2.5)
         cv2.line(frame, pts[i - 1], pts[i], (0, 0, 255), thickness)
         cv2.line(detect, pts[i - 1], pts[i], (0, 0, 255), thickness)
-    try:
-        gray = cv2.cvtColor(detect, cv2.COLOR_BGR2GRAY)
+    # try:
+    #     gray = cv2.cvtColor(detect, cv2.COLOR_BGR2GRAY)
 
-        # Shi-Tomasi corner detection
-        corners_shi_tomasi = cv2.goodFeaturesToTrack(
-            gray, maxCorners=90, qualityLevel=0.5, minDistance=2000)
-        corners_shi_tomasi = np.int0(corners_shi_tomasi)
-        # print(gray)
-        # break
-        # Harris corner detection
-        corners_harris = cv2.cornerHarris(gray, blockSize=20, ksize=3, k=0.04)
+    #     # Shi-Tomasi corner detection
+    #     corners_shi_tomasi = cv2.goodFeaturesToTrack(
+    #         gray, maxCorners=90, qualityLevel=0.5, minDistance=2000)
+    #     corners_shi_tomasi = np.int0(corners_shi_tomasi)
+    #     # print(gray)
+    #     # break
+    #     # Harris corner detection
+    #     corners_harris = cv2.cornerHarris(gray, blockSize=20, ksize=3, k=0.04)
         
-        # print(x)
+    #     # print(x)
     
         
-        corners_harris = cv2.dilate(corners_harris, None)
-        if not (corners_harris is None):
-            # หาตำแหน่งจุดที่มีความเข้มของสีมาก
-            corners_harris_detect = detect.copy()
-            corners_harris_detect[corners_harris > 0.01 * corners_harris.max()] = [0, 0, 255]
+    #     corners_harris = cv2.dilate(corners_harris, None)
+    #     if not (corners_harris is None):
+    #         # หาตำแหน่งจุดที่มีความเข้มของสีมาก
+    #         corners_harris_detect = detect.copy()
+    #         corners_harris_detect[corners_harris > 0.01 * corners_harris.max()] = [0, 0, 255]
 
-            # วาดวงรอบจุดที่พบจาก Shi-Tomasi
-            for corner in corners_shi_tomasi:
-                x, y = corner.ravel()
-                cv2.circle(detect, (x, y), 20, 255, -1)
-                print(corners_shi_tomasi)
-        cv2.imshow('Detected Corners (Shi-Tomasi)', detect)
-        cv2.imshow('Harris Corners', corners_harris_detect)
-    except:
-        print('ok')
+    #         # วาดวงรอบจุดที่พบจาก Shi-Tomasi
+    #         for corner in corners_shi_tomasi:
+    #             x, y = corner.ravel()
+    #             cv2.circle(detect, (x, y), 20, 255, -1)
+    #             print(corners_shi_tomasi)
+    #     cv2.imshow('Detected Corners (Shi-Tomasi)', detect)
+    #     cv2.imshow('Harris Corners', corners_harris_detect)
+    # except:
+    #     print('ok')
     # show the movement deltas and the direction of movement on
     # the frame
     cv2.putText(frame, direction, (10, 30), cv2.FONT_HERSHEY_SIMPLEX,
@@ -199,8 +249,23 @@ while True:
     # show the frame to our screen and increment the frame counter
 
     cv2.imshow("Frame", frame)
-    cv2.imshow("Frame2", detect)
-    
+
+    # cv2.imshow("Frame2", detect)
+    image = frame
+
+    # Detect the green ball
+    contours_green = detect_green_ball(image)
+
+    # Detect shadows
+    contours_shadows = detect_shadows(image)
+
+    # Check for intersection between green ball and shadows
+    if check_intersection(contours_green, contours_shadows):
+        print("Intersection detected!")
+    else:
+        print('k')
+
+    cv2.imshow("Frame2", image)
 
     key = cv2.waitKey(1) & 0xFF
     counter += 1
