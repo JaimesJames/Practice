@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('navbar') %>
+    <% if (product) { %>
+     
+    
+    <h1>Hello EJS EIEI</h1>
+    <b><%=name %></b>
+    <%=test %>
+    <%- test %>
+
+    <% if(name == 'JaimesJames') {%>
+        <h1>You are Admin in all worlds</h1>
+    <% }else{ %>
+        <h1>you are my fried ah ah o eu o ue wo</h1>
+    <% } %>
+
+    <% for( let i = 0; i <= 10; i++ ) { %>
+        <p><%=i %><%=product[i] %></p>
+    <% } %>
+
+    <%= product %>
+    <% for( let i = 0; i < product.length; i++ ) { %>
+        <h2><%=product[i] %></h2>
+    <% } %>
+    <% product.forEach(e => { %>
+        <h2><%=e %></h2>
+    <% }) %>
+
+    <% Object.values(obj).forEach((e)=>{%>
+        
+        <img src="images/<%=e.image %>" alt="<%=e.image %>"> 
+        <a href="/<%=e._id %>"><p>User: <%=e.name %> following: <%=e.following %> follower: <%=e.follower %></p></a> 
+    <% }) %>
+    <% }else{ %>
+        <h1>Loading</h1>
+    <% } %>
+</body>
+</html>

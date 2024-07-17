@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% if (obj) { %>
+    <table>
+    <a href="/logout">logout</a>
+    <% Object.values(obj).forEach((e)=>{%>
+        
+        <tr>
+            <td><p>User: <%=e.name %></p></td>
+            <td><a href="/delete/<%=e._id %>" onclick="return confirm('Wanna delete this user? Nail it!')">Del</a></td>
+            <td>
+                <form action="/edit" method="POST">
+                    <input type="hidden" name="edit_id" value="<%=e._id %>">
+                    <button type="submit">Edit</button>
+                </form>
+            </td>
+        </tr>
+    <% }) %>
+    <% }else{ %>
+        <h1>Loading</h1>
+    <% } %>
+    </table>
+</body>
+</html>

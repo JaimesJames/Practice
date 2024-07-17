@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% if (data) { %>
+    <img src="images/<%=data.image %>" alt="<%=data.image %>"> 
+    <p>User: <%=data.name %> following: <%=data.following %> follower: <%=data.follower %></p>
+    <% }else{ %>
+        <h1>Loading</h1>
+    <% } %>
+</body>
+</html>

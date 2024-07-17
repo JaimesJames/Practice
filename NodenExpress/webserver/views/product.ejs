@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('navbar') %>
+    <a href="/logout">logout</a>
+    <h1>proaue y product</h1>
+    <form method="GET" action="/insert">
+        <div>
+            <input type="text" name="name"> 
+        </div>
+        <div>
+            <input type="file" name="profile">
+        </div>
+        <div>
+            <button type="submit">submit</button>
+        </div>
+    </form>
+    <form method="POST" action="/insert" enctype="multipart/form-data">
+        <div>
+            <input type="text" name="name"> 
+        </div>
+        <div>
+            <input type="file" name="profile">
+        </div>
+        <div>
+            <button type="submit">submit</button>
+        </div>
+    </form>
+</body>
+</html>
