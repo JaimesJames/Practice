@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Load the image
-image = cv2.imread('Screenshot 2567-03-08 at 10.58.10.png')
+image = cv2.imread('test.png')
 
 # Get the dimensions of the image
 height, width, _ = image.shape

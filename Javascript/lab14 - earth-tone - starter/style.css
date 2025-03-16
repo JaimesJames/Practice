@@ -1,0 +1,179 @@
+@font-face {
+  font-family: kanit;
+  src: url(font/Kanit/Kanit-Light.ttf);
+}
+@font-face {
+  font-family: lobster;
+  src: url(font/Lobster/Lobster-Regular.ttf);
+}
+/* CSS สามารถแก้ได้อย่างอิสระจนหาที่สุดไม่ได้เลย นะครับ ^^ */
+:root {
+  --color1: #ba6c39;
+  --color2: #f2e8dc;
+  --color3: #f7d9c9;
+
+  --menu1: #f7f3f0;
+  --menu2: #ecd3ce;
+  --menu3: #f8d8c8;
+}
+
+body {
+  margin: 0;
+  font-family: kanit;
+  background-color: var(--color3);
+}
+
+nav {
+  /* Navbar */
+  width: 100%;
+  height: 100px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+ul{
+  list-style: none;
+}
+
+nav ul{
+  width: 100%;
+  display: flex;
+  margin: 0;
+  padding: 0; 
+  /* max-width: 1000px;
+  margin: auto; */
+}
+nav ul li{
+  text-align: center;
+  flex: 1;
+}
+
+.logo{
+  flex: 3;
+  font-weight: bold;
+  color: var(--color1);
+}
+
+.content {
+  width: 100%;
+  height: 90vh;
+  box-sizing: border-box;
+  /* border-bottom: 1px solid black; */
+  /* max-width: 1000px;
+  margin: auto; */
+}
+
+.content-1 {
+  font-family: lobster;
+  display: flex;
+}
+
+.content-1 div{
+  flex: 1 1 50%;
+  flex-wrap: wrap;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.con1-gall{
+  position: relative;
+  background: var(--color2);
+}
+
+#img1{
+  position: absolute;
+  width: 600px;
+  padding-bottom: 30%;
+}
+#img2{
+  padding-top: 20%;
+  padding-left: 30%;
+  position: absolute;
+  width: 400px;
+}
+
+.con1-text{
+  display: flex;
+  font-size: 1.5rem;
+  /* padding: 5rem; */
+}
+
+.content-2{
+  display: flex;
+  background: white;
+  align-items: center;
+}
+
+.content-2 div{
+  flex: 1
+}
+
+.content-2 .con2-img{
+  flex: 2;
+}
+
+.text-ver{
+  /* writing-mode: vertical-rl;
+  text-orientation: mixed; */
+  transform: rotate(-90deg);
+  text-align: center;
+  color: var(--color1);
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.ver2{
+  transform: rotate(90deg);
+}
+
+#img3{
+  width: 100%;
+  padding: 2rem;
+}
+
+.menulist{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: .5rem;
+}
+
+.me1{
+  background: var(--menu1);
+  padding: .5rem 0;
+}
+
+.me2{
+  background: var(--menu2);
+  padding: .5rem 0;
+}
+
+.me3{
+  background: var(--menu3);
+  padding: .5rem 0;
+}
+
+.content-3{
+  display: flex;
+  align-items: center;
+}
+
+.content-3 div{
+  flex: 1 1 50%;
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+footer {
+  width: 100%;
+  height: 100px;
+  background-color: #f8f4f1;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
