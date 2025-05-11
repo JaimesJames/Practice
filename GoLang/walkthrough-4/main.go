@@ -73,7 +73,7 @@ func main() {
 	app.Listen(":8080")
 
 	// err = createProduct(&Product{Name: "Small Candy", Describe: "sweet!", Price: 1})
-
+	//trysometingjaaa
 	// product, err := getProduct(2)
 
 	// err = updateProduct(2, &Product{Describe: strPtr("4K quality Olivia Rodrigo's Portrait")})
