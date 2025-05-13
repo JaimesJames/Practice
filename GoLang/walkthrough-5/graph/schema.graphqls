@@ -1,0 +1,53 @@
+# type Todo {
+#   id: ID!
+#   text: String!
+#   done: Boolean!
+#   user: User!
+# }
+
+# type User {
+#   id: ID!
+#   name: String!
+# }
+
+# type Query {
+#   todos: [Todo!]!
+# }
+
+# input NewTodo {
+#   text: String!
+#   userId: String!
+# }
+
+# type Mutation {
+#   createTodo(input: NewTodo!): Todo!
+# }
+
+type Product {
+  id: ID!
+  name: String!
+  description: String
+  price: Float!
+}
+
+type Query {
+  Products: [Product!]
+  Product(id: ID!): Product
+}
+
+input NewProduct {
+  name: String!
+  description: String
+  price: Int!
+}
+
+input UpdateProduct {
+  name: String
+  description: String
+  price: Int
+}
+
+type Mutation {
+  createProduct(input: NewProduct): Product
+  updateProduct(input: UpdateProduct): Product
+}
